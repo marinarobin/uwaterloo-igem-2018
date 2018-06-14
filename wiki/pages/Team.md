@@ -6,3 +6,4 @@
 * Anya Forestell
 * Max Reed
 * Simon Frew
+* Nicole Wang
