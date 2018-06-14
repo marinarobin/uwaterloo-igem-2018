@@ -5,3 +5,4 @@
 * Nicole Lassel
 * Anya Forestell
 * Max Reed
+* Simon Frew
