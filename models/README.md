@@ -74,3 +74,37 @@ This directory contains models for the 2018 iGEM team
    * Use physics knowledge
 
 **24.** Are the cells independent?
+
+## Signals Brainstorming
+
+### Input
+**1.** Are we using a normal camera or a fluorescent microscope?
+
+**2.** How do we interpret the raw image data?
+
+**3.** Preprocessing on the image data?
+
+**4.** Reliability and linearity of fluorescence data?
+
+**5.** Filtering ambient light? (excitation LEDs)
+
+**6.** Is normalizing the fluorescence readings just a constant shift?
+
+### Output
+**1.** Modelling MPC vs. PID
+
+**2.** Shape of signal
+
+   * Square wave?
+   * Changing ratio of on/off or fixed?
+   * Sudden change or gradual?
+
+**3.** Period of modulation?
+
+**4.** What are the standard algorithms for this? Which should we use?
+
+**5.** How does voltage relate to the properties we're looking for?
+
+**6.** Is there a significant lag in the input?
+
+**7.** Just red or just green or both?
