@@ -1,0 +1,9 @@
+export default `
+# Project Description
+
+Microorganisms are always interacting in nature, but in the laboratory it can be difficult to culture two species together in one medium. Mixed populations are difficult to maintain for a variety of reasons. For instance, a difference in growth rates can result in one population outcompeting the other. Our team hopes to use synthetic optogenetic systems to dynamically control and maintain the growth of two populations simultaneously.
+
+To control bacterial growth, our systems will target MetE, an enzyme needed for the synthesis of methionine. Since methionine is essential for protein synthesis, bacteria can only grow if they have the MetE gene or if their environment is supplemented with methionine. By placing MetE production under the control of an optogenetically-regulated promoter, we can tune the growth of our bacteria. In order to control two different bacterial populations independently, each promoter will be regulated by a distinct optogenetic system. The two systems we have chosen are CcaS/CcaR, which is activated by green light, and Opto-T7 RNA polymerase, which is activated by blue light. Thus, we can control growth of our two population by switching MetE production on and off with different lights. For example, shining blue light will increase growth of the Opto-T7 population.      
+
+Our system enables the growth of different microorganisms in the same culture. Hence, it opens several doors in biotech and research. It could improve the metabolic engineering of microbial populations used in the production of pharmaceuticals, biofuels, and other important materials. It could also allow researchers to explore complex interactions between microbes and investigate questions that could not previously be answered due to co-culturing limitations.
+`;
