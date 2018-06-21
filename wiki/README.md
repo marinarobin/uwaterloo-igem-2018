@@ -4,4 +4,4 @@ In the documentation folder, you will find documents describing the code in the 
 
 Dont forget:
 
-//Comment your code!
+// Comment your code!
