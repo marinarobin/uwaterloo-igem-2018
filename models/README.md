@@ -90,21 +90,22 @@ This directory contains models for the 2018 iGEM team
 
 **6.** Is normalizing the fluorescence readings just a constant shift?
 
+**7.** Do we care about absolute growth rate?
+
+**8.** Do all cells fluoresce equally?
+
 ### Output
-**1.** Modelling MPC vs. PID
+**1.** Do we use MPC or PID?
 
 **2.** Shape of signal
 
    * Square wave?
-   * Changing ratio of on/off or fixed?
-   * Sudden change or gradual?
+   * Fixed frequency?
 
 **3.** Period of modulation?
 
-**4.** What are the standard algorithms for this? Which should we use?
+**4.** Just red or just green or both? Is one faster? Other considerations?
 
-**5.** How does voltage relate to the properties we're looking for?
+**5.** How does the delay in our system affect our approach?
 
-**6.** Is there a significant lag in the input?
-
-**7.** Just red or just green or both?
+**6.** Do we need some sort of calibration sequence?
