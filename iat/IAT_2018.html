@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html><head><META CHARSET='UTF-8'><title>PsyToolkit run experiment</title>
+</head>
+<body onload="whenloaded()">
+<script>
+function whenloaded(){
+var xxx; xxx=document.getElementById('startbutton');xxx.textContent='Click this button to start the experiment in the black box above this button';xxx.disabled=false;var tmpimg;tmpimg=document.getElementById('experimentloadingimg');tmpimg.parentNode.removeChild(tmpimg);
+}</script>
+<center><div id='cbox'
+    style='width:800;height:600;border:0px
+    solid black;background-color:black'><canvas tabindex='1'
+    id="exp" width="800"
+    height="600" style="outline:none;display:
+    block;
+    background-color:black;border:none;padding:0;margin:0;"></canvas></div></center>
+<br><button id='startbutton' disabled='true' onClick="startbutton.disabled=true;main();return(false);">Experiment loading in progress, please be patient and wait...</button><img id='experimentloadingimg' src='http://www.psytoolkit.org/loading.gif'><br>
+<script src="./iat.js"></script>
+<div id='showdata'></div>
+
+</body>
+</html>
