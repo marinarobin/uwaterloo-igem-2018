@@ -14,28 +14,34 @@ from scipy import misc
 # you then enter the names of your images here.
 fileNames = ["11","12","13","14","21","22","23","24"]
 
-for i in range(len(fileNames)): # loop once for each image you want to analyze.
-	currentImage = misc.imread(fileNames[i] + '.png') 	# the image gets read in as a 3D array.
-														# dimensions are (height in pixels)x(width in pixels)x(4).
-														# the 3rd dimension (the second embedded array) has the values:
-														# [red value, green value, blue value, 255]
-														# i don't know why 255 is added on at the end. 
-	# this is a magical command that flattens the array so now it has the dimensions:
-	# (height in pixels * width in pixels)x(4)
-	rgb_flat_list = [item for sublist in currentImage for item in sublist]
-	
-	# the rest of this is just finding the average rgb value for each image and outputting that.
-	# the average blue value is probably useless. the average green value might actually get too much
-	# bleed over from blue light, meaning the average red value actually gives the best idea of how
-	# much green fluorescence there is. this is just a guess though (supported by a single experiment
-	# that i performed on August 21st, 2018).
-	totIntensity = [0, 0, 0]
-	for j in range(len(rgb_flat_list)):
-		for k in range(3):
-			totIntensity[k] = totIntensity[k] + rgb_flat_list[j][k]
-	for k in range(3):
-		totIntensity[k] = totIntensity[k] / (1.0 * len(rgb_flat_list))
-	print("Average (r,g,b) for " + fileNames[i] + ": (" + str(int(totIntensity[0]*10)/10.) + "/255, " + str(int(totIntensity[1]*10)/10.) + "/255, " + str(int(totIntensity[2]*10)/10.) + "/255)")
+for name in fileNames:
+    currentImage = misc.imread(name + '.png') 	# the image gets read in as a 3D array.
+
+    # the 3rd dimension (the second embedded array) has the values:
+    # [red value, green value, blue value, 255]
+    # i don't know why 255 is added on at the end.
+    # this is a magical command that flattens the array so now it has the dimensions:
+    # (height in pixels * width in pixels)x(4)
+    rgb_flat_list = [item for sublist in currentImage for item in sublist]
+
+    # the rest of this is just finding the average rgb value for each image and outputting that.
+    # the average blue value is probably useless. the average green value might actually get too much
+    # bleed over from blue light, meaning the average red value actually gives the best idea of how
+    # much green fluorescence there is. this is just a guess though (supported by a single experiment
+    # that i performed on August 21st, 2018).
+    totIntensity = [0, 0, 0]
+    for j in range(len(rgb_flat_list)):
+        for k in range(3):
+            totIntensity[k] = totIntensity[k] + rgb_flat_list[j][k]
+        for k in range(3):
+            totIntensity[k] = totIntensity[k] / (1.0 * len(rgb_flat_list))
+
+        print "Average (r,g,b) for {} : ({}/255, {}/255, {}/255)".format(
+            name,
+            round(totIntensity[0], 1),
+            round(totIntensity[1], 1),
+            round(totIntensity[2], 1)
+        )
 
 # It's pretty dumb to include this here but this is the output from my first experiment on August 21st:
 # Average (r,g,b) for 11: (77.1/255, 224.9/255, 191.9/255)
