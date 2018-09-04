@@ -1,0 +1,11 @@
+.about {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.text {
+  text-align: left;
+  display: inline-block;
+  max-width: 500px;
+  margin: 16px;
+}
