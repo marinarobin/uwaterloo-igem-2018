@@ -1,5 +1,6 @@
 # Models
 This directory contains models for the 2018 iGEM team
+<<<<<<< HEAD
 
 ## Biomodels Brainstorming
 **1.** Degradation Tags
@@ -108,3 +109,5 @@ This directory contains models for the 2018 iGEM team
 **6.** Is there a significant lag in the input?
 
 **7.** Just red or just green or both?
+=======
+>>>>>>> master
