@@ -1,4 +1,6 @@
-# TODO: fix errors
+#Michael Astwood 2018 with help from https://apmonitor.com/wiki/index.php/Main/GekkoPythonOptimization
+#This program is built to control light
+#levels based on data taken during experiments.
 
 from gekko import GEKKO
 import numpy as np
