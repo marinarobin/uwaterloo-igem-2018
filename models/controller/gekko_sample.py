@@ -31,7 +31,7 @@ m.Equation(mass*v.dt() == -v*b + K*b*p) #a differential equation in terms of our
 #linear drag vs gas pedal input
 
 m.options.IMODE = 6 #this puts the library in MPC mode
-m.solve(disp=False) #this finalizes our controller for this prediction cycle
+m.solve(disp=True) #this finalizes our controller for this prediction cycle
 
 # get additional solution information
 import json
