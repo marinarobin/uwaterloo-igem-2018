@@ -1023,7 +1023,7 @@ function showdata_html() {
     request.open(method, url, shouldBeAsync);
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     request.send(outputdata);
-    alert('Thanks for participating!');
+    alert('Thanks for participating! Please send your email and name to policy.uwigem@gmail.com to be entered into a draw to win a Grand Prize UW Retail giftcard or 1 of 5 iGEM goose keychains!');
 
     newbutton.appendChild(newtext);
     newbutton.setAttribute("onclick", 'showdata.innerHTML = "<table border=1>" + formatoutputdata(outputdata) + "</table>";');
