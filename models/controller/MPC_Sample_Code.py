@@ -17,15 +17,15 @@ K = m.Param(value=0.8)
 # Manipulated variable (in our system it will be the light intensity)
 p = m.MV(value=50, lb=0, ub=100) #value is initial value, ub is upper bound, lb is lower bound
 p.STATUS = 1  # allow optimizer to change
-p.DCOST = 0.05 # smooth out changes in intensity
-p.DMAX = 30   # slow down changes in intensity
+p.DCOST = 0 # smooth out changes in intensity
+p.DMAX = 10   # slow down changes in intensity
 
 # Controlled Variable (in our system it will be the ratio)
 v = m.CV(value=0)
-v.STATUS = 1            # add the SP to the objective
-m.options.CV_TYPE = 2   # squared error
+v.STATUS = 1            # add the setpoint to the objective
+m.options.CV_TYPE = 2   # squared error root(sum(x^2))
 v.SP = 40               # set point
-v.TR_INIT = 1           # set point trajectory (0 = deadband, 1 = re-center at start, 2 = recenter-always)
+v.TR_INIT = 0           # set point trajectory (0 = straight line at SP, 1 = starts at zero and ramps up)
 v.TAU = 5               # time constant of trajectory
 
 # Process model (this is a model for car acceleration)
