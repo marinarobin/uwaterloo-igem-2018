@@ -1,196 +1,203 @@
-from gekko import GEKKO
 import numpy as np
+from random import random
+from gekko import GEKKO
 import matplotlib.pyplot as plt
 
-#%% Simulation
+#%% Process
+p = GEKKO()
 
-s = GEKKO(name='cstr-sim')
+p.time = [0,.5]
 
-#1 step of simulation, discretization matches MHE
-s.time = np.linspace(0,.1,2)
+#Parameters
+p.u = p.MV()
+p.K = p.Param(value=1) #gain
+p.tau = p.Param(value=5) #time constant
 
-#Receive measurement from simulated control
-Tc = s.MV(value=300,name='tc')
-Tc.FSTATUS = 1 #receive measurement
-Tc.STATUS = 0  #don't optimize
+#variable
+p.y = p.SV() #measurement
 
-#State variables to watch
-Ca = s.SV(value=.7, ub=1, lb=0,name='ca')
-T = s.SV(value=305,lb=250,ub=500,name='t')
+#Equations
+p.Equation(p.tau * p.y.dt() == -p.y + p.K * p.u)
 
-#other parameters
-q = s.Param(value=100)
-V = s.Param(value=100)
-rho = s.Param(value=1000)
-Cp = s.Param(value=0.239)
-mdelH = s.Param(value=50000)
-ER = s.Param(value=8750)
-k0 = s.Param(value=7.2*10**10)
-UA = s.Param(value=5*10**4)
-Ca0 = s.Param(value=1)
-T0 = s.Param(value=350)
+#options
+p.options.IMODE = 4
+
+#%% MHE Model
+m = GEKKO()
+
+m.time = np.linspace(0,20,41) #0-20 by 0.5 -- discretization must match simulation
+
+#Parameters
+m.u = m.MV() #input
+m.K = m.FV(value=3, lb=1, ub=3) #gain
+m.tau = m.FV(value=4, lb=1, ub=10) #time constant
 
 #Variables
-k = s.Var()
-rate = s.Var()
+m.y = m.CV() #measurement
 
-#Rate equations
-s.Equation(k==k0*s.exp(-ER/T))
-s.Equation(rate==k*Ca)
-#CSTR equations
-s.Equation(V* Ca.dt() == q*(Ca0-Ca)-V*rate)
-s.Equation(rho*Cp*V* T.dt() == q*rho*Cp*(T0-T) + V*mdelH*rate + UA*(Tc-T))
+#Equations
+m.Equation(m.tau * m.y.dt() == -m.y + m.K*m.u)
 
 #Options
-s.options.IMODE = 4 #dynamic simulation
-s.options.NODES = 3
-s.options.SOLVER = 3
-
-
-#%% MHE
-
-#Model
-
-m = GEKKO(name='cstr-mhe')
-
-#6 time points in horizon
-m.time = np.linspace(0,.5,6)
-
-#Parameter to Estimate
-UA_mhe = m.FV(value=10*10**4,name='ua')
-UA_mhe.STATUS = 1 #estimate
-UA_mhe.FSTATUS = 0 #no measurements
-#upper and lower bounds for optimizer
-UA_mhe.LOWER = 10000
-UA_mhe.UPPER = 100000
-
-#Measurement input
-Tc_mhe = m.MV(value=300,name='tc')
-Tc_mhe.STATUS = 0 #don't estimate
-Tc_mhe.FSTATUS = 1 #receive measurement
-
-#Measurement to match simulation with
-T_mhe = m.CV(value=325 ,lb=250,ub=500,name='t')
-T_mhe.STATUS = 1  #minimize error between simulation and measurement
-T_mhe.FSTATUS = 1 #receive measurement
-T_mhe.MEAS_GAP = 0.1 #measurement deadband gap
-
-#State to watch
-Ca_mhe = m.SV(value=0.8, ub=1, lb=0,name='ca')
-
-#Other parameters
-q = m.Param(value=100)
-V = m.Param(value=100)
-rho = m.Param(value=1000)
-Cp = m.Param(value=0.239)
-mdelH = m.Param(value=50000)
-ER = m.Param(value=8750)
-k0 = m.Param(value=7.2*10**10)
-Ca0 = m.Param(value=1)
-T0 = m.Param(value=350)
-
-#Equation variables(2 other DOF from CV and FV)
-k = m.Var()
-rate = m.Var()
-
-#Reaction equations
-m.Equation(k==k0*m.exp(-ER/T_mhe))
-m.Equation(rate==k*Ca_mhe)
-#CSTR equations
-m.Equation(V* Ca_mhe.dt() == q*(Ca0-Ca_mhe)-V*rate) #mol balance
-m.Equation(rho*Cp*V* T_mhe.dt() == q*rho*Cp*(T0-T_mhe) + V*mdelH*rate + UA_mhe*(Tc_mhe-T_mhe)) #energy balance
-
-
-#Global Tuning
 m.options.IMODE = 5 #MHE
 m.options.EV_TYPE = 1
-m.options.NODES = 3
-m.options.SOLVER = 3 #IPOPT
+m.options.DIAGLEVEL = 0
 
-#%% Loop
+# STATUS = 0, optimizer doesn't adjust value
+# STATUS = 1, optimizer can adjust
+m.u.STATUS = 0
+m.K.STATUS = 1
+m.tau.STATUS = 1
+m.y.STATUS = 1
 
-# number of cycles to run
-cycles = 50
+# FSTATUS = 0, no measurement
+# FSTATUS = 1, measurement used to update model
+m.u.FSTATUS = 1
+m.K.FSTATUS = 0
+m.tau.FSTATUS = 0
+m.y.FSTATUS = 1
 
-# step in the jacket cooling temperature at cycle 6
-Tc_meas = np.empty(cycles)
-Tc_meas[0:15] = 280
-Tc_meas[5:cycles] = 300
-dt = 0.1 # min
-time = np.linspace(0,cycles*dt-dt,cycles) # time points for plot
+# DMAX = maximum movement each cycle
+m.K.DMAX = 1
+m.tau.DMAX = .1
 
-# allocate storage
-Ca_meas = np.empty(cycles)
-T_meas = np.empty(cycles)
-UA_mhe_store = np.empty(cycles)
-Ca_mhe_store = np.empty(cycles)
-T_mhe_store = np.empty(cycles)
+# MEAS_GAP = dead-band for measurement / model mismatch
+m.y.MEAS_GAP = 0.25
+
+m.y.TR_INIT = 1
 
 
+#%% MPC Model
+c = GEKKO()
+
+c.time = np.linspace(0,5,11) #0-5 by 0.5 -- discretization must match simulation
+
+#Parameters
+c.u = c.MV(lb=-10,ub=10) #input
+c.K = c.FV(value=10, lb=1, ub=3) #gain
+c.tau = c.FV(value=1, lb=1, ub=10) #time constant
+
+#Variables
+c.y = c.CV() #measurement
+
+#Equations
+c.Equation(c.tau * c.y.dt() == -c.y + c.u * c.K)
+
+#Options
+c.options.IMODE = 6 #MPC
+c.options.CV_TYPE = 1
+
+# STATUS = 0, optimizer doesn't adjust value
+# STATUS = 1, optimizer can adjust
+c.u.STATUS = 1
+c.K.STATUS = 0
+c.tau.STATUS = 0
+c.y.STATUS = 1
+
+# FSTATUS = 0, no measurement
+# FSTATUS = 1, measurement used to update model
+c.u.FSTATUS = 0
+c.K.FSTATUS = 1
+c.tau.FSTATUS = 1
+c.y.FSTATUS = 1
+
+# DMAX = maximum movement each cycle
+c.u.DCOST = .1
+
+#y setpoint
+#if CV_TYPE = 1, use SPHI and SPLO
+sp = 3.0
+c.y.SPHI = sp + 0.1
+c.y.SPLO = sp - 0.1
+#if CV_TYPE = 2, use SP
+#c.y.SP = 3
+
+c.y.TR_INIT = 0
+
+#%% problem configuration
+# number of cycles
+cycles = 100
+# noise level
+noise = 0.25
+
+#%% run process, estimator and control for cycles
+y_meas = np.empty(cycles)
+y_est = np.empty(cycles)
+k_est = np.empty(cycles)
+tau_est = np.empty(cycles)
+u_cont = np.empty(cycles)
+sp_store = np.empty(cycles)
+
+# Create plot
+plt.figure(figsize=(10,7))
+plt.ion()
+plt.show()
 
 for i in range(cycles):
+    # set point changes
+    if i==20:
+        sp = 5.0
+    elif i==40:
+        sp = 2.0
+    elif i==60:
+        sp = 4.0
+    elif i==80:
+        sp = 3.0
+    c.y.SPHI = sp + 0.1
+    c.y.SPLO = sp - 0.1
+    sp_store[i] = sp
 
-    ## Process
-    # input Tc (jacket cooling temperature)
-    Tc.MEAS = Tc_meas[i]
-    # simulate process model, 1 time step
-    s.solve()
-    # retrieve Ca and T measurements from the process
-    Ca_meas[i] = Ca.MODEL
-    T_meas[i] = T.MODEL
+    ## controller
+    #load
+    c.tau.MEAS = m.tau.NEWVAL
+    c.K.MEAS = m.K.NEWVAL
+    if p.options.SOLVESTATUS == 1:
+        c.y.MEAS = p.y.MODEL
+    #change setpoint at time 25
+    if i == 25:
+        c.y.SPHI = 6.1
+        c.y.SPLO = 5.9
+    c.solve()
+    u_cont[i] = c.u.NEWVAL
 
-    ## Estimator
-    # input process measurements
-    # input Tc (jacket cooling temperature)
-    Tc_mhe.MEAS = Tc_meas[i]
-    # input T (reactor temperature)
-    T_mhe.MEAS = T_meas[i] #CV
+    ## process simulator
+    #load control move
+    p.u.MEAS = u_cont[i]
+    #simulate
+    p.solve()
+    #load output with white noise
+    y_meas[i] = p.y.MODEL + (random()-0.5)*noise
 
-    # solve process model, 1 time step
+    ## estimator
+    #load input and measured output
+    m.u.MEAS = u_cont[i]
+    m.y.MEAS = y_meas[i]
+    #optimize parameters
     m.solve()
-    # check if successful
-    if m.options.APPSTATUS == 1:
-        # retrieve solution
-        UA_mhe_store[i] = UA_mhe.NEWVAL
-        Ca_mhe_store[i] = Ca_mhe.MODEL
-        T_mhe_store[i] = T_mhe.MODEL
-    else:
-        # failed solution
-        UA_mhe_store[i] = 0
-        Ca_mhe_store[i] = 0
-        T_mhe_store[i] = 0
+    #store results
+    y_est[i] = m.y.MODEL
+    k_est[i] = m.K.NEWVAL
+    tau_est[i] = m.tau.NEWVAL
 
-    print('MHE results: Ca (estimated)=' + str(Ca_mhe_store[i]) + \
-        ' Ca (actual)=' + str(Ca_meas[i]) + \
-        ' UA (estimated)=' + str(UA_mhe_store[i]) + \
-        ' UA (actual)=50000')
-
-#%% plot results
-plt.figure()
-plt.subplot(411)
-plt.plot(time,Tc_meas,'k-',linewidth=2)
-plt.axis([0,time[-1],275,305])
-plt.ylabel('Jacket T (K)')
-plt.legend('T_c')
-
-plt.subplot(412)
-plt.plot([0,time[-1]],[50000,50000],'k--')
-plt.plot(time,UA_mhe_store,'r:',linewidth=2)
-plt.axis([0,time[-1],10000,100000])
-plt.ylabel('UA')
-plt.legend(['Actual UA','Predicted UA'],loc=4)
-
-plt.subplot(413)
-plt.plot(time,T_meas,'ro')
-plt.plot(time,T_mhe_store,'b-',linewidth=2)
-plt.axis([0,time[-1],300,340])
-plt.ylabel('Reactor T (K)')
-plt.legend(['Measured T','Predicted T'],loc=4)
-
-plt.subplot(414)
-plt.plot(time,Ca_meas,'go')
-plt.plot(time,Ca_mhe_store,'m-',linewidth=2)
-plt.axis([0,time[-1],.6,1])
-plt.ylabel('Reactor C_a (mol/L)')
-plt.legend(['Measured C_a','Predicted C_a'],loc=4)
-plt.show()
+    plt.clf()
+    plt.subplot(4,1,1)
+    plt.plot(y_meas[0:i])
+    plt.plot(y_est[0:i])
+    plt.plot(sp_store[0:i])
+    plt.legend(('meas','pred','setpoint'))
+    plt.ylabel('y')
+    plt.subplot(4,1,2)
+    plt.plot(np.ones(i)*p.K.value[0])
+    plt.plot(k_est[0:i])
+    plt.legend(('actual','pred'))
+    plt.ylabel('k')
+    plt.subplot(4,1,3)
+    plt.plot(np.ones(i)*p.tau.value[0])
+    plt.plot(tau_est[0:i])
+    plt.legend(('actual','pred'))
+    plt.ylabel('tau')
+    plt.subplot(4,1,4)
+    plt.plot(u_cont[0:i])
+    plt.legend('u')
+    plt.draw()
+    plt.pause(0.05)
