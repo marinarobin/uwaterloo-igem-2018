@@ -15,7 +15,7 @@ Our project aims to maintain a stable co-culture by addressing the problem of co
 -   To slow the growth of one population and allow the other to catch up
 
 Through our research, we came up with one method for each option. 
-The first method involved expressing HipA, a serine/threonine protein kinase toxin, in the Escherichia coli (E. coli) population with the faster growth rate. This would begin to kill some of the culture which in turn would allow the slower culture to catch up, thereby maintaining the co-culture.    
+The first method involved expressing HipA, a serine/threonine protein kinase toxin, in the _Escherichia coli_ (_E. coli_) population with the faster growth rate. This would begin to kill some of the culture which in turn would allow the slower culture to catch up, thereby maintaining the co-culture.    
 
 The other method considered was to control the methionine production within the cell by controlling the metE gene. This gene is necessary for methionine biosynthesis. In a medium that lacks methionine, this gene becomes essential for growth. By controlling this gene’s expression, we can cut off the fast-growing population’s  supply of methionine to allow the slower population to catch up.
 
@@ -25,7 +25,7 @@ We decided to control the expression of metE in order to create our co-culturing
 
 ### Q: How do we control metE expression? 
 
-In order to control the expression of two cultures independently of one another, we needed two different light-activated systems, or optogenetic systems. We found a CcaS/CcaS system which is activated by green light and shut off by red light, used by the Kammash Lab. [1] By putting a CcaS/CcaR-responsive promoter in front of metE, we could promote its expression with green light and slow cell growth  with red light. We decided to use this system because other research groups had verified that it worked to control the expression of MetE and  to control cell growth. [1,2]
+In order to control the expression of two cultures independently of one another, we needed two different light-activatable systems, also known as optogenetic systems. We found a CcaS/CcaS system which is activated by green light and shut off by red light, used by the Kammash Lab. [1] By putting a CcaS/CcaR-responsive promoter in front of metE, we could promote its expression with green light and slow cell growth  with red light. We decided to use this system because other research groups had verified that it worked to control the expression of MetE and  to control cell growth. [1,2]
 
 The second system that we wanted to use was a blue light activated system, so that we could control both populations independently and simultaneously. We found two systems that used blue light: the pDawn and Opto-T7 RNA polymerase systems. We prefered Opto-T7 because its response time, or the time it takes after the light is shined to start seeing an effect, is faster and closer to that of CcaS/CcaR. Therefore, we thought Opto-T7 would be a better fit with our existing red/green light system. Unfortunately, due to an inability to acquire the OptoT7 plasmids in time, we decided to use the pDawn system.
 
@@ -38,7 +38,7 @@ The next question to be answered was how to monitor the relative quantities of b
 
 ## Project Re-work
 
-The design as described above is how we planned to carry out our project in order to develop a system which is able to maintain a co-culture at specified ratios. Unfortunately due to issues that arose with some of the light activated systems and time constraints, we had to rework the project design in order to complete our work in time. 
+The experimental design described above is how we originally planned to carry out our project, in order to develop a system which was able to maintain a co-culture at specified ratios. Unfortunately, due to issues that arose with some of the light activated systems and time constraints, we had to rework the project design in order to complete our work in time. 
 We removed the blue light system entirely since we could not assemble it fast enough. Instead, we decided to focus only on the CcaS/CcaR system. Our revised co-culture involves engineering our faster-growing E. coli population (JT2) to be controlled by CcaS/CcaR, and leaving our slower-growing E. coli population (DH5𝛂) uncontrolled.  This allowed us to continue to pursue the core objective of our project: to create a stable co-culture, while removing some of the complexity so that we could finish on time. 
 
 ## Experimental Design
@@ -49,9 +49,9 @@ A major consideration for our system was that we would have to grow the culture 
 
 **Design Iterations:**
 
-Initially, we thought of growing the two populations together in a methionine dropout medium but we quickly realized that this would not work. If one population outgrew the other, we wouldn’t be able to tell if this was due to differences in methionine availability, competition for other nutrients, or a difference in growth rates. This is a major downfall because one of the main reasons we are pursuing this project is to maintain co-cultures with populations that have different growth rates.  
+Initially, we thought of growing the two populations together in a methionine dropout medium, but we quickly realized that this would not work. If one population outgrew the other, we wouldn’t be able to tell if this was due to differences in methionine availability, competition for other nutrients, or a difference in growth rates. This was a major downfall because one of the main reasons we pursued this project was to maintain co-cultures of populations that had different growth rates.  
 
-One alternate idea we thought of was to physically separate the populations within the medium, using a membrane to split the tube in half. The pores would be small enough to allow for exchange of methionine (if excreted). However, using a membrane would prevent us from being able to stir our co-culture, and shaking the tube could easily dislodge the membrane. 
+Another idea we proposed was to separate the populations within the medium, using a membrane to physically split the tube in half. The pores would be large enough to allow for exchange of any methionine excreted, but small enough to prevent cells from crossing. However, using a membrane would prevent us from being able to stir our co-culture from within, and shaking the tube could potentially dislodge the membrane. 
 
 Finally, we decided to grow the methionine-producing population in a methionine-deficient medium, filter the cells out, then re-inoculate the medium with cells that couldn't produce methionine. If methionine was secreted by the first population, it would be present in the medium post-filtration, allowing growth of the second population. 
 These controls were a critical part of our design. 
