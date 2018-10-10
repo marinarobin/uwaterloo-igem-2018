@@ -49,6 +49,8 @@ Positive
 → MetE (100 uL) 
 Growth
 
+//will figure out how to format this table soon
+
 In this chart, a negative control refers to an experiment where there was an expectation that there should be no bacterial growth as per our hypothesis, and a positive control denotes an experiment where there should have been growth expected.
 
 As can be seen from the chart, the experimental trial, in which the NCM strain was grown and removed from the methionine knockout media, had no growth once J2T was introduced into it. This was a positive result as this suggested that there was little or no “leaking” of methionine produced by the NCM during growth into the media, and thus the J2T did not have any means to grow. 
