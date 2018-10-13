@@ -1,4 +1,3 @@
-# Results
 Multiple trials went underway for the growth of J2T in knockout MetE media to definitively confirm that the predicted results occured in regards to NCM/J2T growth. As the goal of the experiment was to assure that there was no “leaking” of methionine from the J2T cells when stimulated with methionine production, the following test matrix was performed:
 
 

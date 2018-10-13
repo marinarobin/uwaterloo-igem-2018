@@ -1,5 +1,3 @@
-# Description
-
 ## _E. co-light_ : Dynamic Optogenetic Control of Co-cultures
 
 [insert "Intro to opto co-cultures video here] 

@@ -1,5 +1,4 @@
-# Experiments
-##Inoculation
+## Inoculation
 1. Aseptically pipette 5 mL sterile liquid broth into a test tube.
 2. Add appropriate antibiotic, if required, to desired concentration using a pipette.  Volumes depend on antibiotic but there is a list stuck onto the -20℃ freezer in the iGEM lab.
 3. When pipetting the antibiotic, tilt the test tube so that the broth is close enough to the top of the tube that you can add the antibiotic to the broth.  Dropping it in won’t work because you will typically be adding ~ 2.5 μL and the drop will be too small to fall.
@@ -9,7 +8,7 @@
 8. If inoculating from a plate. Take a wooden stick and touch a colony on the plate then dip it into the liquid media and stir around. DON’T discard sticks.
 9. Place the tubes in a 37℃ incubator on the shaker for 12-24 hours. If possible, angle the tubes because it improves oxygenation of the culture as it shakes.
 
-##Nanodrop
+## Nanodrop
 The NanoDrop (ND-1000) is a small-scale spectrophotometer that can detect DNA concentration and give an estimate of sample purity. 
 
 1. Open the nanodrop application on the computer and  login to the iGEM account using the password “bio”.
@@ -18,7 +17,7 @@ The NanoDrop (ND-1000) is a small-scale spectrophotometer that can detect DNA co
 4. Add 1.0 μL of ddH2O, then 1.0μL of elution buffer to blank.
 5. Load 1.0 μL of sample and click “Measure” to determine the concentration and absorbance ratios. Record these below. Between trials, wipe the machine with a kimwipe. Make sure to leave machine how you found it
 
-##Polymerase Chain Reaction (PCR) 
+## Polymerase Chain Reaction (PCR)
 
 1. Per reaction: In a 200μL tube, mix: 
  - 1μL Forward Primer (10 μM)
@@ -103,7 +102,7 @@ The NanoDrop (ND-1000) is a small-scale spectrophotometer that can detect DNA co
  - Note that this is for standard PCR (where your template is extracted DNA). If your template is DNA in cells (i.e. colony PCR), then initial denaturation should be 5-10 min to lyse the cells.  
  
 
-##Plasmid miniprep 
+## Plasmid miniprep
 1. Pellet 1–5 ml bacterial culture (not to exceed 15 OD units) by centrifugation for 30 seconds. Discard supernatant.
 2. Resuspend pellet in 200 μl Plasmid Resuspension Buffer (B1) (pink). Vortex or pipet to ensure cells are completely resuspended. There should be no visible clumps. 
 3. Lyse cells by adding 200 μl Plasmid Lysis Buffer (B2) (blue/green). Invert tube immediately and gently 5–6 times until color changes to dark pink and the solution is clear and viscous. Do not vortex! Incubate for one minute.
@@ -115,7 +114,7 @@ The NanoDrop (ND-1000) is a small-scale spectrophotometer that can detect DNA co
 9. Transfer column to a clean 1.5 ml microfuge tube. Use care to ensure that the tip of the column has not come into contact with the flow-through. If there is any doubt, re-spin the column for 1 minute before inserting it into the clean microfuge tube. 
 10. Add ≥ 30 μl DNA Elution Buffer to the centre of the matrix. Wait for 1 minute, then spin for 1 minute to elute DNA. 		
 
-##Gel electrophoresis  
+## Gel electrophoresis
 _Setting up your rig:_
 1. Usually we use the small rig with the corresponding small tray.
 2. Tape the edges of the tray. This needs to be water-tight, as you will set your gel here.
@@ -140,7 +139,7 @@ _Pouring and running your gel:_
 12. Load samples and appropriate DNA ladder (generally a 1kb ladder is used).
 13. Attach the lid to the gel rig and plug the lid into the electrophoresis machine.  
 
-##Gel extraction 
+## Gel extraction
 1. Weigh microfuge tube. 
 2. Excise the DNA fragment to be purified from the agarose gel using a razor blade, scalpel or other clean cutting tool. Use care to trim excess agarose. Transfer it to a 1.5 ml microcentrifuge tube and weigh the gel slice. 
 3. Add 4 volumes of Monarch Gel Dissolving Buffer to the tube with the slice (1mg of gel : 4uL of buffer). 
@@ -155,7 +154,7 @@ _Pouring and running your gel:_
 8. Transfer column to a clean 1.5 ml microfuge tube. Use care to ensure that the tip of the column has not come into contact with the flow-through. If in doubt, re-spin for 1 minute before placing into clean microfuge tube. 
 9. Add ≥ 6 μl of DNA Elution Buffer to the centre of the matrix. Wait for 1 minute, and spin for 1 minute to elute DNA. 		 	
 
-##DNA Purification
+## DNA Purification
 1. Dilute sample with DNA Cleanup Binding Buffer according to the table below. Mix well by pipetting up and down or flicking the tube. Do not vortex. A starting sample volume of 20–100 μl is recommended.
 <table>
 <th> Sample type </th>
@@ -179,7 +178,7 @@ _Pouring and running your gel:_
 1. Transfer column to a clean 1.5 ml microfuge tube. Use care to ensure that the tip of the column does not come into contact with the flow-through. If in doubt, re-spin for 1 minute to ensure traces of salt and ethanol are not carried over to next step. 
 1. Add ≥ 6 μl of DNA Elution Buffer to the center of the matrix. Wait for 1 minute, then spin for 1 minute to elute DNA. 
 
-##Heat shock transformation  
+## Heat shock transformation
 1. Acquire ice and enough competent cells for your experimental samples and controls.
 1. Thaw competent cells on ice. 
 1. Get new 1.5ml tubes, and label them with your different sample names. One tube will be a positive control (e.g. uncut vector alone) to test if your transformation technique worked.
@@ -190,7 +189,7 @@ _Pouring and running your gel:_
 1. Add 750 μL of LB broth to each tube then incubate at 37℃ for 45 minutes - 1 hour with shaking.
 1. After incubation you will plate the cells onto selective media so only transformants will grow.
 
-##Frozen stock preparation 
+## Frozen stock preparation
 1. Prepare an overnight culture of the cells that are to be made into frozen stock. 
 1. Aliquot 1 mL of overnight culture into a 1.5 mL microfuge tube. 
 1. Pellet cells by spinning for 1 minute at 16,000 x g. Discard supernatant.    
@@ -201,7 +200,7 @@ _Pouring and running your gel:_
 1. Label cryovial tube appropriately and update the strain list.    
 1. Store in -80°C freezer. 
 
-##Competent cell preparation
+## Competent cell preparation
 1. Innoculate 100mL of LB with 100uL of overnight culture and grow at 37°C to an OD of 0.368,  
 1. Place cells on ice once they reached an OD of 0.368 and chilled for 20-30min (swirling periodically for even cooling)
 1. After 20 min split culture into 2 cold falcon tubes. 50ml each and then centrifuge at 4 degrees for 15min 13000g
@@ -212,5 +211,3 @@ _Pouring and running your gel:_
 1. Decant and re-suspend in 5mL cold CaCl2 + 15% glycerol
 1. Alliquot 50ul into sterile 1.5mL microfuge tubes on ice
 2. Flash freeze tubes using liquid nitrogen and place in -80°C freezer. 
-  
-   

@@ -1,5 +1,3 @@
-# **Safety**
-
 Our lab is located on the third floor of Biology 1 building at the University of Waterloo. We have our own tabletop centrifuges, thermal cycler, analytical and top-loading balances, -20°C freezer, and 4°C refrigerator. We share the -80°C freezer and 37°C incubator with the host lab, under the guidance and supervision of those in the Dr. Trevor Charles lab. Waterloo iGEM is thankful for the supervision and support members of the Dr. Trevor Charles lab have given our team. 
 
 # Laboratory Safety Guidelines in Canada

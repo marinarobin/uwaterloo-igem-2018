@@ -1,5 +1,3 @@
-# Design
-
 It’s been a long journey from ideas, to research sessions, design, failure, redesign, and redesign. One question lead to another. In this page, we explain our system development and experimental design processes, and the reasoning behind the decisions we made along the way. Question by question, answer by answer, we invite you to learn more about this process.
 
 ## Major Goals of the Project
