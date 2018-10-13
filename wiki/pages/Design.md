@@ -7,6 +7,7 @@ It’s been a long journey from ideas, to research sessions, design, failure, re
 
 ## System Development
 ### Q: How do we control growth rates? 
+####    A: By controlling metE expression.
 
 Our project aims to maintain a stable co-culture by addressing the problem of competition between different microbial populations. We wanted to address this by regulating growth. We considered doing this in two ways:
 -   To kill cells in a population when it starts to outcompete the other
@@ -17,9 +18,7 @@ The first method involved expressing HipA, a serine/threonine protein kinase tox
 
 The other method considered was to control the methionine production within the cell by controlling the metE gene. This gene is necessary for methionine biosynthesis. In a medium that lacks methionine, this gene becomes essential for growth. By controlling this gene’s expression, we can cut off the fast-growing population’s  supply of methionine to allow the slower population to catch up.
 
-We decided to control the expression of metE in order to create our co-culturing system because it provides more dynamic control and a faster response from the cells once a command is given. Let’s say you have a co-culture with two bacterial populations: A and B. Population A starts out-growing the other so you turn off its metE production long enough to allow population B to catch up. But what if population B starts overgrowing? What if you want to change the ratio to now increase population A? If you had killed cells, it would take longer to get the few population A cells remaining to start dividing than it would if the cells were there all along, but simply arrested. 
-
-####    A: By controlling metE expression.
+We decided to control the expression of metE in order to create our co-culturing system because it provides more dynamic control and a faster response from the cells once a command is given. Let’s say you have a co-culture with two bacterial populations: A and B. Population A starts out-growing the other so you turn off its metE production long enough to allow population B to catch up. But what if population B starts overgrowing? What if you want to change the ratio to now increase population A? If you had killed cells, it would take longer to get the few population A cells remaining to start dividing than it would if the cells were there all along, but simply arrested. Therefore, controlling MetE expression would allow us to control the growth rate of our populations. 
 
 ### Q: How do we control metE expression? 
 
