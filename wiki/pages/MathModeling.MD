@@ -1,6 +1,6 @@
 notes: This page will link to the subteam pages, but also provide an overview
 
-#M ath and Modeling Team
+# Math and Modeling Team
 
 ## Overview
 
